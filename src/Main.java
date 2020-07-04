@@ -1,19 +1,17 @@
-import java.util.function.IntBinaryOperator;
-import java.util.function.IntToDoubleFunction;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 	public static void main(String[] args) {
-		// ラムダ式
-		IntBinaryOperator func = (int a, int b) -> {
-			return a - b;
-		};
-		int a = func.applyAsInt(5, 3);
-		System.out.println("5-3は、" + a);
+		List<Integer> list = new ArrayList<Integer>();
+		for(Integer i : list) {
+			System.out.println(i * 2);
+		}
 
-		// ラムダ式省略記法
-		double b = 3.14;
-		IntToDoubleFunction function = x ->  x * x * b;
-		double c = function.applyAsDouble(5);
-		System.out.println("5x5x3.14は" + c);
+		// ラムダ式の場合
+		list.stream().forEach(i -> System.out.println(i * 2));
+
+		// parallelStreamでは、並列処理を行うため、大きく性能が向上することがある(上の高速版)
+		list.parallelStream().forEach(i -> System.out.println(i * 2));
 	}
 }
