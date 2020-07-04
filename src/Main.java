@@ -1,20 +1,19 @@
+import java.util.function.IntBinaryOperator;
+import java.util.function.IntToDoubleFunction;
+
 public class Main {
-	public static int twice(int x) {
-		return x * 2;
-	}
-
-	public static int sub(int a, int b) {
-		return a - b;
-	}
-
 	public static void main(String[] args) {
-		System.out.println(twice(5));
-		System.out.println(sub(3, 1));
+		// ラムダ式
+		IntBinaryOperator func = (int a, int b) -> {
+			return a - b;
+		};
+		int a = func.applyAsInt(5, 3);
+		System.out.println("5-3は、" + a);
 
-		// ここで関数を代入
-		MyFunction func = Main::sub;
-		// 変数funcに格納されている処理ロジックを、引数5と3で実行する
-		int a = func.call(5, 3);
-		System.out.println("5-3は" + a);
+		// ラムダ式省略記法
+		double b = 3.14;
+		IntToDoubleFunction function = x ->  x * x * b;
+		double c = function.applyAsDouble(5);
+		System.out.println("5x5x3.14は" + c);
 	}
 }
